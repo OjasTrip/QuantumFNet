@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Server Prices Guide</title>
+  <style>
+    body {
+      background-color: #f9f9f9;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px 0;
+      background-color: #222;
+      overflow: hidden;
+      position: relative;
+    }
+
+    nav {
+      margin-top: 15px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Marquee effect */
+    .marquee {
+      position: relative;
+      width: 100%;
+      height: 60px;
+    }
+
+    .marquee-text {
+      font-size: 50px;
+      font-weight: bold;
+      background: linear-gradient(90deg, #3C06FF, #CFC2FF, #3C06FF);
+      background-size: 200% auto;
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+      position: absolute;
+      white-space: nowrap;
+      animation: moveAcross 14s linear infinite alternate,
+                 glow 4s ease-in-out infinite alternate,
+                 gradientFlow 7s linear infinite;
+    }
+
+    /* Neon glow */
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #3C06FF, 0 0 20px #3C06FF, 0 0 40px #CFC2FF;
+      }
+      to {
+        text-shadow: 0 0 20px #CFC2FF, 0 0 40px #3C06FF, 0 0 80px #CFC2FF;
+      }
+    }
+
+    /* Move across the header */
+    @keyframes moveAcross {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    /* Animated gradient flow */
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    .container {
+      display: flex;
+    }
+
+    aside {
+      width: 220px;
+      background-color: #eee;
+      padding: 20px;
+      height: calc(100vh - 140px);
+      box-sizing: border-box;
+    }
+
+    aside h3 {
+      margin-top: 0;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    aside ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    aside ul li {
+      margin: 10px 0;
+    }
+
+    aside ul li a {
+      text-decoration: none;
+      color: #222;
+      font-weight: bold;
+    }
+
+    aside ul li a:hover {
+      color: #3C06FF;
+    }
+
+    main {
+      flex: 1;
+      padding: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px 0;
+      background-color: #222;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <!-- Gradient-filled neon marquee -->
+    <div class="marquee">
+      <span class="marquee-text" id="marqueeText">⚡ Qᴜᴀɴᴛᴜᴍꜰɴᴇᴛ ⚡</span>
+    </div>
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="rules.html">Rules</a> |
+      <a href="roles.html">Roles</a> |
+      <a href="faq.html">FAQ</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Sidebar -->
+    <aside>
+      <h3>Shops</h3>
+      <ul>
+        <li><a href="coal.html">Coal Mine</a></li>
+        <li><a href="stone.html">Stone Mine</a></li>
+        <li><a href="iron.html">Iron Mine</a></li>
+        <li><a href="gold.html">Gold Mine</a></li>
+        <li><a href="diamond.html">Diamond Mine</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main content -->
+    <main>
+      <h2 style="text-align: center; font-weight: bold; font-size: 36px;">PRICE GUIDE</h2>
+      <br>
+      <ul>
+        <li>Coal – 50 Coins</li>
+        <li>Stone – 120 Coins</li>
+        <li>Iron – 300 Coins</li>
+        <li>Gold – 500 Coins</li>
+        <li>Diamond – 1000 Coins</li>
+      </ul>
+    </main>
+  </div>
+
+  <footer>
+    <p>© 2025 Qᴜᴀɴᴛᴜᴍꜰɴᴇᴛ. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const textEl = document.getElementById("marqueeText");
+    const startText = "⚡ Qᴜᴀɴᴛᴜᴍꜰɴᴇᴛ ⚡";
+    const endText   = "⚡ ʙʏ ᴏᴊᴀꜱᴛʀɪᴘ ⚡";
+
+    let current = startText.split("");
+    const startArr = startText.split("");
+    const endArr = endText.split("");
+
+    let i = 0;
+    let direction = "forward"; // forward = to endText, backward = to startText
+
+    setInterval(() => {
+      if (direction === "forward") {
+        if (i < endArr.length) {
+          current[i] = endArr[i];
+          textEl.textContent = current.join("");
+          i++;
+        } else {
+          direction = "backward";
+          i = endArr.length - 1;
+        }
+      } else {
+        if (i >= 0) {
+          current[i] = startArr[i] || "";
+          textEl.textContent = current.join("");
+          i--;
+        } else {
+          direction = "forward";
+          i = 0;
+        }
+      }
+    }, 250); // speed (ms per letter)
+  </script>
+</body>
+</html>
